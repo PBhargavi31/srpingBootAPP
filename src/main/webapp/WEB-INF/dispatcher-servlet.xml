@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"	
+xmlns:mvc="http://www.springframework.org/schema/mvc" 	
+xmlns:context="http://www.springframework.org/schema/context"	
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 	
+xmlns:p="http://www.springframework.org/schema/p"	
+xsi:schemaLocation="   http://www.springframework.org/schema/beans        
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   http://www.springframework.org/schema/mvc    
+http://www.springframework.org/schema/mvc/spring-mvc.xsd   
+http://www.springframework.org/schema/context    
+http://www.springframework.org/schema/context/spring-context-3.0.xsd   ">	
+
+
+<context:component-scan base-package="com.verizon" />	<!-- will put dao here -->
+
+<bean 
+class="org.springframework.web.servlet.view.InternalResourceViewResolver">		<!-- tghsi internalresource viw..is going to coinert internal view name
+into....wahtever view name given will attach below things as prefix and suffix -->
+<property name="prefix" value="/pages/" />		
+<property name="suffix" value=".jsp" />	
+</bean>	
+<!-- this part useful if we write css, css file is named as theme -->
+<mvc:resources mapping="/theme/**" location="/theme/"		
+cache-period="31556926" />	<!-- giving it a cache period, after this much millisec,cache ill be refreshed again -->
+
+<mvc:annotation-driven />		<!-- we are enabling mvc here-->
+</beans>
+
+<!-- 
+dispatcher servlet will create applctn context
+applxtn context will read beans file and beans will be ready
+ -->
+ <!-- web.xml informa abput dispatcherservlet, in <servletname> -->
+ 
